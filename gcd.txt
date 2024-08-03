@@ -1,0 +1,88 @@
+
+class Solution(object):
+    
+    def gcd(self,a, b):
+        while b != 0:
+            a, b = b, a % b
+        return a
+    
+    def countRepeats(self, myStr, sub):
+
+        if myStr == sub:
+            return 1
+        check = sub
+        count = 1
+        print("this is the sub: " + str(sub))
+        while (len(check) <  len(myStr)):
+            print("ENTERED THE WHILE LOOP")
+            check += sub
+            print("this is the new sub: " + str(check) + " and this is the str: " + myStr)
+            #if the substring is in myStr, then we can conclude that we can still count
+            if check in myStr:
+                count+=1
+            
+            else:
+                return 0
+        return count
+
+    def checkStr(self, myStr, sub):
+        if (myStr == sub):
+            return True
+        check = sub
+        count = 0
+        while (len(check) < len(myStr)):
+            check+=sub
+           # print("this is the new check: " + str(check))
+            #print("this the new check: " + str(check))
+            if check == myStr:
+                return True
+        return False
+            
+    
+    def gcdOfStrings(self, str1, str2):
+        num = self.countRepeats("ABABAB", "AB")
+      
+        sub = ""
+        trueStr = ""
+        i = 0
+        if str2 in str1:
+            sub = str2
+            myStr = str1
+        elif str1 in str2:
+            sub = str1
+            myStr = str2
+        else:
+            print("cannot divide")
+            return ""
+        #first, we must find the pattern that repeats itself in sub
+        print("this is the str: " + str(myStr))
+        subPattern = sub
+        check = ""
+        i = 0
+        #here we are checking the len()
+        while (len(check) < len(sub) and i < len(subPattern)):
+            check = check + sub[i]
+            myCheck = self.checkStr(sub, check)
+         
+            if (myCheck):  
+                subPattern = check
+                break
+         
+            i+=1
+        
+        check = subPattern
+        #here we get the count
+        count = self.countRepeats(sub, subPattern)
+        #hee we get the second count
+        count2 = self.countRepeats(myStr, subPattern)
+        print("this is count2: " + str(count2))
+   
+    
+        if count==0 or count2==0:
+            return ""
+     
+        finalStr = ""
+        for i in range(self.gcd(count,count2)):
+            finalStr += subPattern
+        return finalStr
+        
