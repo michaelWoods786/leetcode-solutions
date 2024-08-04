@@ -1,0 +1,35 @@
+class Solution:
+    def reverseVowels(self, s: str) -> str:
+        if s == " ":
+            return s
+        retVowels = ""
+        lstIndex = []
+        for i in range(len(s)):
+            if s[i] == "A" or s[i] == "a" or s[i] == "E" or s[i] == "e" or s[i] == "I" or s[i] == "i" or s[i] == "O" or s[i] == "o" or s[i] == "U" or s[i] == "u":
+                retVowels += s[i]
+                lstIndex.append(i)
+        j = len(retVowels)-1
+        if len(lstIndex) == 0:
+            return s
+        vowelReverse = ""
+        while (j >=0):
+            vowelReverse += retVowels[j]
+            j-=1
+        k = 0
+        newS = ""
+        print("this is the length of lstIndex: " + str(len(lstIndex)))
+        for i in range(len(s)):
+            if k > len(lstIndex)-1:
+                break
+            #if it is equal to the index where we found it
+            if i == lstIndex[k]:
+                newS += vowelReverse[k]
+                k+=1
+            else:
+                newS += s[i]
+        #if i is less than the range(len(s)), then we need to finish up the rest of the string
+        if len(newS) < len(s):
+            while (i < len(s)):
+                newS += s[i]
+                i+=1
+        return newS
