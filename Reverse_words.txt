@@ -1,0 +1,32 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        newStr = ""
+        if s == "":
+            return ""
+
+        words = s.split(" ")
+
+
+        if len(words) == 0:
+            return s
+        j = len(words)-1
+
+        while j >=1:
+            #here a space was found
+
+
+            if not words[j].isspace() and words[j] != '':
+                print("I have found a place with space")
+                print("ENTERED for the following word: " + str(words[j]))
+                newStr+=(words[j]) + " "
+            j-=1
+        newStr+=(words[j])
+
+        #for the newStr, delete any trailing whitespace:
+
+
+        newStr  = newStr.strip()
+
+        return newStr
+
+
